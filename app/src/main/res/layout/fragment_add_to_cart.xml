@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.aggarwalcode.onlinestore.ecomexampleb.AddToCart"
+    android:clickable="true">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"></android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/sliderDots"
+        android:layout_below="@+id/viewPager"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addToCart"
+        android:layout_below="@+id/sliderDots"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:background="@drawable/btn112"
+        android:foregroundGravity="bottom"
+        android:text="  Add To Cart  " />
+
+
+</RelativeLayout>

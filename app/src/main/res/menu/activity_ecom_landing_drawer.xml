@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_category"
+            android:title="Shop by Category"/>
+
+        <item
+            android:id="@+id/nav_deals"
+            android:title="Deals" />
+
+        <item
+            android:id="@+id/nav_orders"
+            android:title="Your Orders" />
+        <item
+            android:id="@+id/nav_wishlist"
+            android:title="Your Wishlist"/>
+
+        <item
+            android:id="@+id/nav_account"
+            android:title="Your Account" />
+
+        <item
+            android:id="@+id/nav_sell_product"
+            android:title="Sell Your Products" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

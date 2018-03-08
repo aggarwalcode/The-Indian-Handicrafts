@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/ProductCard"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="0dp"
+        android:elevation="3dp"
+        app:cardCornerRadius="0dp">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/productImg"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="10dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/productBrand"
+                android:text="Apple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/productName"
+                android:layout_alignStart="@+id/productName"
+                android:layout_alignTop="@+id/productImg" />
+
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/productDesc"
+                android:layout_alignStart="@+id/productDesc"
+                android:layout_below="@+id/productBrand"
+                android:padding="2dp"
+                android:text="Apple MacBook Air Core i5 5th Gen"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+
+
+            <TextView
+                android:id="@+id/productDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/productName"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/productImg"
+                android:layout_toRightOf="@+id/productImg"
+                android:padding="2dp"
+                android:text="13.3 Inch, 256 GB"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/productDesc"
+                android:layout_alignStart="@+id/productDesc"
+                android:text="1,525"
+                android:layout_below="@+id/productDesc" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

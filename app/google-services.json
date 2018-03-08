@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "858752878796",
+    "firebase_url": "https://ecomexamplea.firebaseio.com",
+    "project_id": "ecomexamplea",
+    "storage_bucket": "ecomexamplea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858752878796:android:2642ec35ca223f2b",
+        "android_client_info": {
+          "package_name": "com.aggarwalcode.onlinestore.ecomexamplea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858752878796-0sfu1md2q1cac98l3em673dq4kvdrqec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aggarwalcode.onlinestore.ecomexamplea",
+            "certificate_hash": "aab43b7ea8d3caccdddd7a1ff2d653c8c2eb528e"
+          }
+        },
+        {
+          "client_id": "858752878796-qc35s00ib59bcft2t8qmqsl389jl8bcb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJUiyntOWNlx1jDr8VL7YCwTk6DuOhsMQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858752878796-qc35s00ib59bcft2t8qmqsl389jl8bcb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858752878796:android:55c2fcf3ae844d6d",
+        "android_client_info": {
+          "package_name": "com.aggarwalcode.onlinestore.ecomexampleb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858752878796-u0pa2jtjnh7p1sr0v4bl4cgrmq2lhba6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aggarwalcode.onlinestore.ecomexampleb",
+            "certificate_hash": "aab43b7ea8d3caccdddd7a1ff2d653c8c2eb528e"
+          }
+        },
+        {
+          "client_id": "858752878796-qc35s00ib59bcft2t8qmqsl389jl8bcb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJUiyntOWNlx1jDr8VL7YCwTk6DuOhsMQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858752878796-qc35s00ib59bcft2t8qmqsl389jl8bcb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
