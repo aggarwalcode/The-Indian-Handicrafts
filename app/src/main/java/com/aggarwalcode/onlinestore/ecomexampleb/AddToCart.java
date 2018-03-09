@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -51,10 +53,11 @@ public class AddToCart extends Fragment {
     ViewPagerAdapter adapter;
     ViewPager viewPager;
     public DatabaseReference mDatabaseRef;
-
     LinearLayout sliderDotPanel;
     private int dotCount;
     private ImageView[] dots;
+    FragmentCart fragmentCart = new FragmentCart();
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,15 +91,14 @@ public class AddToCart extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_add_to_cart, container, false);
 
         addToCart = (Button) view.findViewById(R.id.addToCart);
-        addToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!(Arrays.asList(FragmentCart.prodBuyArray).contains(mParam1))){
-                    FragmentCart.keysAddedToCart.add(mParam1);
+
+            addToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {//!(Arrays.asList(FragmentCart.prodBuyArray).contains(mParam1))
+                    if(!(Arrays.asList(fragmentCart.prodBuyArray).contains(mParam1)))
+                        FragmentCart.keysAddedToCart.add(mParam1);
                 }
-                else return;
-            }
-        });
+            });
 
         sliderDotPanel = (LinearLayout) view.findViewById(R.id.sliderDots);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Products");

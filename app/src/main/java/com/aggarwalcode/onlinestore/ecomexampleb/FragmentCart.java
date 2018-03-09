@@ -39,7 +39,7 @@ public class FragmentCart extends Fragment {
     private String mParam2;
 
     public static final List<String> keysAddedToCart = new ArrayList<String>();
-    public static String[] prodBuyArray;
+    public static String[] prodBuyArray = {};
     public DatabaseReference mDatabaseRef;
     public ProductsHolder product;
     String prodn;
@@ -96,19 +96,17 @@ public class FragmentCart extends Fragment {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Products");
         for(int i =0; i<prodBuyArray.length; i++) {
             prodn = prodBuyArray[i];
+
             mDatabaseRef.child(prodn).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
                     product = dataSnapshot.getValue(ProductsHolder.class);
                     mProducts.add(product);
                     mAdapter = new ProductsAdapter(getActivity(),mProducts);
                     recyclerViewProducts.setAdapter(mAdapter);
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
                 }
             });
         }

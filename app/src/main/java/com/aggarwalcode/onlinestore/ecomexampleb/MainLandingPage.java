@@ -50,9 +50,9 @@ public class MainLandingPage extends AppCompatActivity
     Animation animSlidetoLeft;
     android.widget.SearchView searchView;
     ImageButton shopByCatBut;
+    FragmentCart fragmentCart = FragmentCart.newInstance(null, null);
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_landing_page);
