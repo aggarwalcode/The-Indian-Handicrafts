@@ -46,6 +46,7 @@ public class ProductsListFragment extends Fragment implements AddToCart.OnFragme
     // TODO: Rename and change types of parameters
     public String mParam1;
     public String mParam2;
+    public static final String TAG = "ProductsListFragment";
     public OnFragmentInteractionListener mListener;
 
     public ProductsListFragment() {
@@ -90,12 +91,14 @@ public class ProductsListFragment extends Fragment implements AddToCart.OnFragme
         //recyclerViewProducts.setHasFixedSize(true);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Products");
-
+        mProducts.clear();
         //Change categoty1 to mParam1
         mDatabaseRef.orderByChild("other").startAt(mParam1).endAt(mParam1).addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
+                //mProducts.clear();
                 product = dataSnapshot.getValue(ProductsHolder.class);
                 product.key = dataSnapshot.getKey();
                 mProducts.add(product);
@@ -132,7 +135,7 @@ public class ProductsListFragment extends Fragment implements AddToCart.OnFragme
                         AddToCart frag = AddToCart.newInstance(mProducts.get(position).getKey(),"Param Two");
                         FragmentManager manager = getFragmentManager();
                         FragmentTransaction transaction = manager.beginTransaction();
-                        transaction.add(R.id.container,frag,"AddToCart Fragment");
+                        transaction.replace(R.id.container,frag,"AddToCart");
                         transaction.commit();
                         transaction.addToBackStack(null);
                     }

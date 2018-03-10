@@ -47,6 +47,7 @@ public class FragmentCart extends Fragment {
     public ProductsAdapter mAdapter;
     public List<ProductsHolder> mProducts = new ArrayList <ProductsHolder>();
     public RecyclerView recyclerViewProducts;
+    public static final String TAG = "FragmentCart";
 
     private OnFragmentInteractionListener mListener;
 
@@ -96,10 +97,11 @@ public class FragmentCart extends Fragment {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Products");
         for(int i =0; i<prodBuyArray.length; i++) {
             prodn = prodBuyArray[i];
-
+            mProducts.clear();
             mDatabaseRef.child(prodn).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    //mProducts.clear();
                     product = dataSnapshot.getValue(ProductsHolder.class);
                     mProducts.add(product);
                     mAdapter = new ProductsAdapter(getActivity(),mProducts);

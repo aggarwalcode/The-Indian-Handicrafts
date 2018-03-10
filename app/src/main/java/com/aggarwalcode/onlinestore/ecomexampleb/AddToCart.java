@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -41,6 +39,8 @@ public class AddToCart extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String TAG = "AddToCart";
+
     public Button addToCart;
 
     // TODO: Rename and change types of parameters
@@ -81,7 +81,6 @@ public class AddToCart extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
@@ -97,6 +96,12 @@ public class AddToCart extends Fragment {
                 public void onClick(View v) {//!(Arrays.asList(FragmentCart.prodBuyArray).contains(mParam1))
                     if(!(Arrays.asList(fragmentCart.prodBuyArray).contains(mParam1)))
                         FragmentCart.keysAddedToCart.add(mParam1);
+                    FragmentCart frg = new FragmentCart();
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.detach(frg);
+                    ft.attach(frg);
+                    ft.commit();
+                    return;
                 }
             });
 
@@ -105,10 +110,10 @@ public class AddToCart extends Fragment {
         mDatabaseRef.child(mParam1).child("allimages").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                allImages.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     String upload = (String) postSnapshot.getValue();
                     allImages.add(upload);
-                    //stockArr = allImages.toArray(stockArr);
                     stringArray = allImages.toArray(new String[0]);
                 }
                 viewPager = (ViewPager) view.findViewById(R.id.viewPager);

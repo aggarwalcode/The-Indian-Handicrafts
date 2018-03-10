@@ -2,8 +2,6 @@ package com.aggarwalcode.onlinestore.ecomexampleb;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,7 +20,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -41,8 +38,7 @@ public class MainLandingPage extends AppCompatActivity
         AddToCart.OnFragmentInteractionListener,
         FragmentCart.OnFragmentInteractionListener {
 
-    private static final String TAG = "EcomLanding";
-
+    public static final String TAG = "EcomLanding";
     RecyclerView recyclerViewEcom;
     ImageAdapter mAdapter;
     private DatabaseReference mDatabaseRef;
@@ -51,13 +47,16 @@ public class MainLandingPage extends AppCompatActivity
     android.widget.SearchView searchView;
     ImageButton shopByCatBut;
     FragmentCart fragmentCart = FragmentCart.newInstance(null, null);
+    TextView textCartItemCount;
+    int mCartItemCount = 10;
+    Toolbar toolbar;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_landing_page);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         Toolbar toolbarSecond = (Toolbar) findViewById(R.id.toolbarSecond);
         shopByCatBut = (ImageButton) findViewById(R.id.shopByCatBut);
 
@@ -75,7 +74,6 @@ public class MainLandingPage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         //Calling fragment Here
         shopByCatBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +81,7 @@ public class MainLandingPage extends AppCompatActivity
                 ItemFragmentCat frag = new ItemFragmentCat();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.container,frag,"Test Fragment");
+                transaction.replace(R.id.container,frag,"ItemFragmentCat");
                 transaction.commit();
                 transaction.addToBackStack(null);
             }
@@ -133,7 +131,10 @@ public class MainLandingPage extends AppCompatActivity
                     }
                 })
         );
+
+        mCartItemCount = FragmentCart.keysAddedToCart.size();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -151,7 +152,23 @@ public class MainLandingPage extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.ecom_landing, menu);
+
+        final MenuItem menuItem = menu.findItem(R.id.action_drawer_cart);
+
+        View actionView = MenuItemCompat.getActionView(menuItem);
+        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+
+        setupBadge();
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
+
         return true;
     }
 
@@ -163,7 +180,7 @@ public class MainLandingPage extends AppCompatActivity
         FragmentCart frag = new FragmentCart();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.container,frag,"Cart Fragment");
+        transaction.replace(R.id.container,frag,"FragmentCart");
         transaction.commit();
         transaction.addToBackStack(null);
 
@@ -174,7 +191,24 @@ public class MainLandingPage extends AppCompatActivity
             return true;
         }
 */
+        invalidateOptionsMenu();
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupBadge() {
+        if (textCartItemCount != null) {
+            if (mCartItemCount == 0) {
+                if (textCartItemCount.getVisibility() != View.GONE) {
+                    textCartItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textCartItemCount.setText(String.valueOf(Math.min(mCartItemCount, 99)));
+                if (textCartItemCount.getVisibility() != View.VISIBLE) {
+                    textCartItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+            invalidateOptionsMenu();
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -219,6 +253,6 @@ public class MainLandingPage extends AppCompatActivity
     }
 
     public void homePage(View view) {
-        startActivity(new Intent(MainLandingPage.this, MainLandingPage.class));
+        //startActivity(new Intent(MainLandingPage.this, MainLandingPage.class));
     }
 }
