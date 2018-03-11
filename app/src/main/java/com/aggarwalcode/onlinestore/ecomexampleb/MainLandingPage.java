@@ -38,6 +38,10 @@ public class MainLandingPage extends AppCompatActivity
         AddToCart.OnFragmentInteractionListener,
         FragmentCart.OnFragmentInteractionListener {
 
+    MainLandingPage(){
+        //Empty Constructor
+    }
+
     public static final String TAG = "EcomLanding";
     RecyclerView recyclerViewEcom;
     ImageAdapter mAdapter;
@@ -48,7 +52,7 @@ public class MainLandingPage extends AppCompatActivity
     ImageButton shopByCatBut;
     FragmentCart fragmentCart = FragmentCart.newInstance(null, null);
     TextView textCartItemCount;
-    int mCartItemCount = 10;
+    static int mCartItemCount = 0;
     Toolbar toolbar;
 
 
@@ -131,8 +135,6 @@ public class MainLandingPage extends AppCompatActivity
                     }
                 })
         );
-
-        mCartItemCount = FragmentCart.keysAddedToCart.size();
     }
 
 
@@ -150,13 +152,20 @@ public class MainLandingPage extends AppCompatActivity
     }
 
     @Override
+    public void onRestart(){
+        if(MainLandingPage.mCartItemCount == FragmentCart.keysAddedToCart.size() );
+        MainLandingPage.mCartItemCount = FragmentCart.keysAddedToCart.size();
+        super.onRestart();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
         getMenuInflater().inflate(R.menu.ecom_landing, menu);
 
         final MenuItem menuItem = menu.findItem(R.id.action_drawer_cart);
-
+        MenuItemCompat.getActionProvider(menuItem);
         View actionView = MenuItemCompat.getActionView(menuItem);
         textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
 
@@ -184,6 +193,7 @@ public class MainLandingPage extends AppCompatActivity
         transaction.commit();
         transaction.addToBackStack(null);
 
+
         /*int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -191,7 +201,6 @@ public class MainLandingPage extends AppCompatActivity
             return true;
         }
 */
-        invalidateOptionsMenu();
         return super.onOptionsItemSelected(item);
     }
 
@@ -207,7 +216,6 @@ public class MainLandingPage extends AppCompatActivity
                     textCartItemCount.setVisibility(View.VISIBLE);
                 }
             }
-            invalidateOptionsMenu();
         }
     }
 

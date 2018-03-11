@@ -81,6 +81,7 @@ public class AddToCart extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -96,12 +97,13 @@ public class AddToCart extends Fragment {
                 public void onClick(View v) {//!(Arrays.asList(FragmentCart.prodBuyArray).contains(mParam1))
                     if(!(Arrays.asList(fragmentCart.prodBuyArray).contains(mParam1)))
                         FragmentCart.keysAddedToCart.add(mParam1);
+                    MainLandingPage.mCartItemCount = FragmentCart.keysAddedToCart.size();
+                    getActivity().invalidateOptionsMenu();
                     FragmentCart frg = new FragmentCart();
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.detach(frg);
                     ft.attach(frg);
                     ft.commit();
-                    return;
                 }
             });
 
